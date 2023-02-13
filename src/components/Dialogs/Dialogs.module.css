@@ -1,0 +1,57 @@
+.dialogs{
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+}
+
+.dialogsItems{
+
+}
+
+
+.dialog{
+    margin-top: 20px;
+    padding-left: 10px;
+}
+
+
+.messages{
+
+}
+
+
+.message{
+    margin-top: 20px;
+    padding-left: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
