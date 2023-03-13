@@ -62,7 +62,7 @@ let state: RootStateType = {
 
 export const addPost = (postMessage: string) => {
   debugger;
-  let newPost : PostType =  { id: new Date().getTime(), message: postMessage, likesCount: 15 };
+  let newPost : PostType =  { id: new Date().getTime(), message: postMessage, likesCount: 0 };
   
   state.profilePage.posts.push(newPost);
  

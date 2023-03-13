@@ -21,11 +21,17 @@ export const MyPosts: React.FC<PropsType> = (props) => {
   let newPostElement = React.createRef<HTMLTextAreaElement>();
 
   const addPost = () => {
-    debugger;
     if(newPostElement.current){
-      props.addPost(newPostElement.current?.value)
-      
+      if(newPostElement.current.value.trim() !== ''){
+        props.addPost(newPostElement.current?.value)
+         
+      }
+     
+
+  
+
     }
+    
   };
 
   return (
