@@ -8,9 +8,12 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { RootStateType } from "./redux/state";
 type PropsType = {
   state: RootStateType;
+  addPost:(postMessage:string) => void
+
 };
 
-export const App: React.FC<PropsType> = ({ state }) => {
+
+export const App: React.FC<PropsType> = ({ state ,addPost}) => {
   return (
     <BrowserRouter>
       <div className="app-wrapper">
@@ -20,7 +23,7 @@ export const App: React.FC<PropsType> = ({ state }) => {
           <Routes>
             <Route
               path="/profile"
-              element={<Profile state={state.profilePage} />}
+              element={<Profile state={state.profilePage} addPost={addPost} />}
             />
             <Route
               path="/dialogs/*"
