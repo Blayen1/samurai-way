@@ -3,16 +3,16 @@ import s from "../Dialogs.module.css";
 import { NavLink } from "react-router-dom";
 
 type PropsType = {
-  name: string;
   id: number;
+  name: string;
 };
 
-export const DialogsItem: React.FC<PropsType> = (props) => {
-  let path = "/dialogs/" + props.id;
+export const DialogsItem: React.FC<PropsType> = (state) => {
+  let path = "/dialogs/" + state.id;
 
   return (
     <div className={s.dialog}>
-      <NavLink to={path}>{props.name}</NavLink>
+      <NavLink to={path}>{state.name}</NavLink>
     </div>
   );
 };
