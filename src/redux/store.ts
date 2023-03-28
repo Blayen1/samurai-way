@@ -1,3 +1,6 @@
+import { DialogReducer } from "./dialog-reducer";
+import { ProfileReducer } from "./profile-reducer";
+
 export type PostType = {
   id: number;
   message: string;
@@ -22,6 +25,7 @@ export type MessageType = {
 export type DialogsPageType = {
   dialogs: DialogType[];
   messages: MessageType[];
+  newMessageText: string;
 };
 
 export type SidebarType = {};
@@ -31,6 +35,20 @@ export type RootStateType = {
   dialogsPage: DialogsPageType;
   sidebar: SidebarType;
 };
+
+export type StoreType = {
+  _state: StateType
+  _callSubscriber: () => void
+  subscriber: (observer: () => void) => void
+  subscribe: (observer: () => void) => void
+  getState: () => StateType
+  dispatch: (action: any) => void
+}
+
+export type StateType = {
+    profilePage: ProfilePageType
+    dialogsPage:DialogsPageType
+}
 
 let store = {
   _state: {
@@ -55,6 +73,7 @@ let store = {
         { id: 2, message: "kk" },
         { id: 3, message: "you" },
       ],
+      newMessageText: "",
     },
     sidebar: {},
   },
@@ -67,20 +86,9 @@ let store = {
   },
 
   dispatch(action: any) {
-    if (action.type === "ADD-POST") {
-      let newPost: PostType = {
-        id: new Date().getTime(),
-        message: this._state.profilePage.newPostText,
-        likesCount: 0,
-      };
-
-      this._state.profilePage.posts.push(newPost);
-      this._state.profilePage.newPostText = "";
-      this._callSubscriber();
-    } else if (action.type === "UPDATE-NEW-POST-TEXT") {
-      this._state.profilePage.newPostText = action.newText;
-      this._callSubscriber();
-    }
+    ProfileReducer(this._state.profilePage, action);
+    DialogReducer(this._state.dialogsPage, action);
+    this._callSubscriber()
   },
 };
 

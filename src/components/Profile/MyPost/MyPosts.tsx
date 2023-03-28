@@ -10,8 +10,9 @@ export type PostType = {
 
 type PropsType = {
   posts: PostType[];
-  dispatch:(action?:any) => void
   newPostText: string;
+  onPostChange:(newText:string)=>void
+  addPost:()=>void
 };
 export const MyPosts: React.FC<PropsType> = (props) => {
   let postsElements = props.posts.map((el, index) => (
@@ -21,14 +22,13 @@ export const MyPosts: React.FC<PropsType> = (props) => {
   let newPostElement = React.createRef<HTMLTextAreaElement>();
 
   const addPost = () => {
-      props.dispatch({type:'ADD-POST'})
+      props.addPost()
     
   };
 
   const onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     let newText = e.currentTarget.value;
-    props.dispatch({type: 'UPDATE-NEW-POST-TEXT',newText:newText})
-
+  props.onPostChange(newText)
   };
 
   return (

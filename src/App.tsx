@@ -5,14 +5,14 @@ import { Navbar } from "./components/NavBar/Navbar";
 import { Header } from "./components/Header/Header";
 import { Dialogs } from "./components/Dialogs/Dialogs";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import { RootStateType } from "./redux/state";
+import { RootStateType,  } from "./redux/store";
+import { StoreType } from "./redux/store";
 type PropsType = {
-  state: RootStateType;
-  dispatch:(action:any) => void
+  store: StoreType
 };
 
 
-export const App: React.FC<PropsType> = ({ state,dispatch,...restProps}) => {
+export const App: React.FC<PropsType> = ( {store}) => {
   return (
     <BrowserRouter>
       <div className="app-wrapper">
@@ -23,12 +23,12 @@ export const App: React.FC<PropsType> = ({ state,dispatch,...restProps}) => {
             <Route path="/" element={<Navigate to={'/profile'}/>}/>
             <Route
               path="/profile"
-              element={<Profile state={state.profilePage} dispatch={dispatch} />}
+              element={<Profile store={store}  />}
             />
-            <Route
+            {/* <Route
               path="/dialogs/*"
-              element={<Dialogs state={state.dialogsPage} />}
-            />
+              element={<Dialogs state={state} dispatch={dispatch}/>}
+            /> */}
           </Routes>
         </div>
       </div>

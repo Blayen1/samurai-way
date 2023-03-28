@@ -12,6 +12,7 @@ export const Message: React.FC<PropsType> = (state) => {
   return (
     <>
       <div  className={s.message}>{state.message}</div>
+    
     </>
   );
 };
